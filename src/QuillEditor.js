@@ -9,7 +9,8 @@ function QuillEditor() {
   const quillRef = useRef(null); // Een referentie om de Quill-editor te kunnen aanspreken
 
   useEffect(() => {
-    const editor = new Quill(quillRef.current, {
+    // Initialiseer Quill op quillRef
+    new Quill(quillRef.current, {
       theme: 'snow',
       modules: {
         toolbar: [
@@ -22,37 +23,31 @@ function QuillEditor() {
         ],
       },
     });
-
-    const handleSubmit = async () => {
-      const content = editor.getContents(); // Haalt de inhoud van de Quill-editor op
-
-      try {
-        // Voeg het document toe aan je Firestore-database
-        await projectFirestore.collection('documents').add({
-          content: content,
-          createdAt: projectFirestore.FieldValue.serverTimestamp()
-        });
-        alert('Inhoud verstuurd!');
-      } catch (error) {
-        console.error('Fout bij het versturen van de inhoud:', error);
-        alert('Fout bij het versturen van de inhoud.');
-      }
-    };
-
-    // Zoek de 'Verstuur'-knop in je index.html en voeg een event listener toe
-    const submitBtn = document.getElementById('submitBtn');
-    submitBtn.addEventListener('click', handleSubmit);
-
-    // Cleanup event listener wanneer de component niet meer in gebruik is
-    return () => {
-      submitBtn.removeEventListener('click', handleSubmit);
-    };
   }, []);
+
+  const handleSubmit = async () => {
+    // Verzamel de inhoud van de Quill-editor
+    const content = quillRef.current.editor.getContents();
+    
+    try {
+      // Voeg het document toe aan je Firestore-database
+      await projectFirestore.collection('documents').add({
+        content: content,
+        createdAt: projectFirestore.FieldValue.serverTimestamp()
+      });
+      alert('Inhoud verstuurd!');
+    } catch (error) {
+      console.error('Fout bij het versturen van de inhoud:', error);
+      alert('Fout bij het versturen van de inhoud.');
+    }
+  };
 
   return (
     <div>
-      <div ref={quillRef} style={{ height: '400px' }}></div>
-      <button id="submitBtn">Verstuur</button>
+      {/* Quill Editor container */}
+      <div ref={quillRef} style={{ height: '500px', width: '500px', background: 'white' }}></div>
+      {/* Verstuurknop */}
+      <button onClick={handleSubmit} style={{ marginTop: '20px' }}>Verstuur</button>
     </div>
   );
 }
