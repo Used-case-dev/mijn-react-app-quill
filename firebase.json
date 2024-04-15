@@ -1,0 +1,38 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint"
+      ]
+    }
+  ],
+  "hosting": {
+    "public": "npm cache clean --force",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "storage": {
+    "rules": "ols --force"
+  },
+  "emulators": {
+    "singleProjectMode": true
+  },
+  "remoteconfig": {
+    "template": "rm /Users/damianoffenberg/.npm/_cacache/content-v2/sha512/b2/ad/aeae8c2ca049d64352c10cbd944ce9617f2ea600e55c4a4efc75d3b076201a41f5c6600ecbea524049358040f6227df9471a78ad05f0cfe5fb5883813e2c"
+  },
+  "extensions": {}
+}
