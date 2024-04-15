@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import QuillEditor from './QuillEditor'; // Zorg dat dit pad klopt
+import QuillEditor from '../my-quill-editor-app/src/QuillEditor'; // Zorg dat dit pad klopt
 
 const App = () => (
   <div>
