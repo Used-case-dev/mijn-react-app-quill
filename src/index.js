@@ -4,7 +4,7 @@ import QuillEditor from './QuillEditor'; // Zorg dat dit pad klopt
 
 const App = () => (
   <div>
-    <h1>Hallo, Webflow en React!</h1>
+    <h1>Hallo</h1>
     <QuillEditor /> {/* Dit is je QuillEditor component */}
   </div>
 );
