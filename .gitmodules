@@ -1,0 +1,4 @@
+[submodule "my-quill-editor-app"]
+	path = my-quill-editor-app
+	url = https://github.com/Used-case-dev/mijn-react-app-quill.git
+
