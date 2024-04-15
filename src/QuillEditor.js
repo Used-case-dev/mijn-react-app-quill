@@ -45,7 +45,7 @@ function QuillEditor() {
   return (
     <div>
       {/* Quill Editor container */}
-      <div ref={quillRef} style={{ height: '500px', width: '500px', background: 'white' }}></div>
+      <div ref={quillRef} style={{ height: '1000px', width: '1000px', background: 'white' }}></div>
       {/* Verstuurknop */}
       <button onClick={handleSubmit} style={{ marginTop: '20px' }}>Verstuur</button>
     </div>
